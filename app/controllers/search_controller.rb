@@ -19,7 +19,7 @@ class SearchController < ApplicationController
     @query = params[:query] || ''
     @page = params[:page] || 0
 
-    if @query
+    if @query != ''
       @results = get_search_results(@query, @page)
     end
   end
