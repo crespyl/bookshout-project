@@ -7,6 +7,10 @@
             User: <%= @user.name %>
             <br/>
             Email: <%= @user.email %>
+            <br/>
+            <% if @github_user %>
+                Login: <%= @github_user.login %>
+            <% end %>
             <p>
                 <%= link_to "Log Out", logout_url %>
             </p>

@@ -35,6 +35,9 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
 
+# Use octokit to access GitHub API
+gem 'octokit'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
