@@ -1,18 +1,29 @@
-<h3>Search</h3>
-<% if @user %>
-    <p>
-        Id: <%= @user.id %>
-        <br/>
-        User: <%= @user.name %>
-        <br/>
-        Email: <%= @user.email %>
+<h3>Github Search</h3>
+<div id='login_panel' class='panel'>
+    <% if @user %>
         <p>
-            <%= link_to "Log Out", logout_url %>
+            Id: <%= @user.id %>
+            <br/>
+            User: <%= @user.name %>
+            <br/>
+            Email: <%= @user.email %>
+            <p>
+                <%= link_to "Log Out", logout_url %>
+            </p>
         </p>
-   </p>
-<% else %>
-   <%= link_to "Log In", login_url %>
-<% end %>
-<p>
-    Time: <%= Time.now %>
-</p>
+    <% else %>
+        <%= link_to "Log In", login_url %>
+    <% end %>
+</div>
+<div id='search_panel' class='panel'>
+    <%= form_tag method="get" do %>
+        <%= label_tag :query, "Search GitHub:" %>
+        <%= text_field_tag :query, @query  %>
+        <%= submit_tag "Search" %>
+    <% end %>
+
+    <% if not @results.empty? %>
+        <ul id='results_list'>
+        </ul>
+    <% end %>
+</div>

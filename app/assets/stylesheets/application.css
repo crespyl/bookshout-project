@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+h1, h2, h3 {
+    text-align: center;
+}
+
+#login_panel {
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 1px solid gray;
+}
+#login_panel a { text-align: center; margin: 5px; }
