@@ -9,7 +9,7 @@
             Email: <%= @user.email %>
             <br/>
             <% if @github_user %>
-                Login: <%= @github_user.login %>
+                GitHub Login: <%= @github_user.login %>
             <% end %>
             <p>
                 <%= link_to "Log Out", logout_url %>
@@ -28,6 +28,13 @@
 
     <% if not @results.empty? %>
         <ul id='results_list'>
+            <% @results.items.each do |repo| %>
+                <li>
+                    <span class='name'><%= repo.name %></span>
+                    <span class='owner'><%= repo.owner.login %></span>
+                    <span class='url'><%= repo.html_url %></span>
+                </li>
+            <% end %>
         </ul>
     <% end %>
 </div>
