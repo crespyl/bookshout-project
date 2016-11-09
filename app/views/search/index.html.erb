@@ -26,7 +26,7 @@
         <%= submit_tag "Search" %>
     <% end %>
 
-    <% if @results %>
+    <% if @results and not @results.items.empty?  %>
         <p>Got <%= pluralize @results.total_count, 'result' %>, in <%= pluralize @num_pages, 'page' %></p>
         <%= render partial: "nav_pages", locals: {page: @page,
                                                   pages: @num_pages,
@@ -39,7 +39,7 @@
         <%= render partial: "nav_pages", locals: {page: @page,
                                                   pages: @num_pages,
                                                   per_page: @per_page} %>
-    <% else %>
+    <% elsif not @query.empty? and @results.items.empty? %>
        <p>I guess that just doesn't exist...</p>
     <% end %>
 </div>
