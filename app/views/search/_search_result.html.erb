@@ -1,0 +1,10 @@
+<li>
+    <div class='info'>
+        <span class='name'><%= link_to repo.name, repo.html_url %></span>
+        <span class='language'><%= repo.language || "None" %></span>
+        <span class='stargazers_count'><%= repo.stargazers_count %> Stars</span>
+    </div>
+    <div class='description'>
+        <%= repo.description %>
+    </div>
+</li>

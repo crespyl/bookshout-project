@@ -1,0 +1,19 @@
+<nav>
+    <% if @num_pages > 1 %>
+        <%= link_to_search_with "First", :page => 1 %>
+        <% if @page > 1 %>
+            <%= link_to_search_with "Previous", :page => @page-1 %>
+        <% end %>
+        <% (1...@page).each do |num| %>
+            <%=link_to_search_with num, :page => num %>
+        <% end %>
+        <span class='current'><%= @page %></span>
+        <% (@page+1..@num_pages).each do |num| %>
+            <%= link_to_search_with num, :page => num %>
+        <% end %>
+        <% if @page < @num_pages %>
+            <%= link_to_search_with "Next", :page => @page+1 %>
+        <% end %>
+        <%= link_to_search_with "Last", :page => @num_pages %>
+    <% end %>
+</nav>

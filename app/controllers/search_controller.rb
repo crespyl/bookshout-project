@@ -17,10 +17,13 @@ class SearchController < ApplicationController
 
     # search query, if present
     @query = params[:query] || ''
-    @page = params[:page] || 0
+    @page = (params[:page] || 1).to_i
+    @per_page = (params[:per_page] || 100).to_i
 
     if @query != ''
-      @results = get_search_results(@query, @page)
+      @results = get_search_results(@query, @page, @per_page)
+      # GitHub only provides the first 1000 results, so we'll cap there
+      @num_pages = [@results.total_count, 1000].min() / @per_page
     end
   end
 

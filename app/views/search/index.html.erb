@@ -27,13 +27,13 @@
     <% end %>
 
     <% if @results %>
-        <ul id='results_list'>
+        <p>Got <%= pluralize @results.total_count, 'result' %>, in <%= pluralize @num_pages, 'page' %></p>
+        <%= render partial: "nav_pages", locals: {page: @page,
+                                                  pages: @num_pages,
+                                                  per_page: @per_page} %>
+       <ul id='results_list'>
             <% @results.items.each do |repo| %>
-                <li>
-                    <span class='name'><%= repo.name %></span>
-                    <span class='owner'><%= repo.owner.login %></span>
-                    <span class='url'><%= repo.html_url %></span>
-                </li>
+                <%= render partial: "search_result", locals: {repo: repo} %>
             <% end %>
         </ul>
     <% end %>

@@ -13,6 +13,6 @@ class SessionController < ApplicationController
   def logout
     session.delete(:user_id)
     session.delete(:github_token)
-    redirect_to '/'
+    redirect_to root_url
   end
 end

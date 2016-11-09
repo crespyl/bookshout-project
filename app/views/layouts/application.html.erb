@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <head>
     <title>BookshoutProject</title>
     <%= csrf_meta_tags %>
 
@@ -9,6 +8,9 @@
   </head>
 
   <body>
-    <%= yield %>
+      <%= yield %>
+      <% if Rails.env.development? %>
+          <% console %>
+      <% end %>
   </body>
 </html>
