@@ -31,10 +31,15 @@
         <%= render partial: "nav_pages", locals: {page: @page,
                                                   pages: @num_pages,
                                                   per_page: @per_page} %>
-       <ul id='results_list'>
+        <ul id='results_list'>
             <% @results.items.each do |repo| %>
                 <%= render partial: "search_result", locals: {repo: repo} %>
             <% end %>
         </ul>
+        <%= render partial: "nav_pages", locals: {page: @page,
+                                                  pages: @num_pages,
+                                                  per_page: @per_page} %>
+    <% else %>
+       <p>I guess that just doesn't exist...</p>
     <% end %>
 </div>
