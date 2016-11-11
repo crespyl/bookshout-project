@@ -2,8 +2,6 @@
 <div id='login_panel' class='panel'>
     <% if @user %>
         <p>
-            Id: <%= @user.id %>
-            <br/>
             User: <%= @user.name %>
             <br/>
             Email: <%= @user.email %>
@@ -21,13 +19,41 @@
 </div>
 <div id='search_panel' class='panel'>
     <%= form_tag '/', :method => 'get' do %>
-        <%= label_tag :query, "Search GitHub:" %>
-        <%= text_field_tag :query, @query  %>
-        <%= submit_tag "Search" %>
+        <div class='form_row'>
+            <%= label_tag :query, "Search GitHub:" %>
+            <%= text_field_tag :query, @query  %>
+            <%= submit_tag "Search" %>
+        </div>
+        <div class='form_row'>
+            <%= label_tag :language, "Language:" %>
+            <%= text_field_tag :language, @language %>
+        </div>
+        <div class='form_row'>
+            <%= label_tag :sort_by, "Sort By:" %>
+            <%= radio_button_tag :sort_by, "score", (@sort_by == "score" || @sort_by == nil) %>
+            <%= label_tag :sort_by_score, "Relevance" %>
+            <%= radio_button_tag :sort_by, "stars", @sort_by == "stars" %>
+            <%= label_tag :sort_by_stars, "Stars" %>
+        </div>
+        <div class='form_row'>
+            <%= label_tag :sort_order, "Order:" %>
+            <%= radio_button_tag :sort_order, "asc", @sort_order == "asc" %>
+            <%= label_tag :sort_order_asc, "Ascending" %>
+            <%= radio_button_tag :sort_order, "desc", (@sort_order == "desc" || @sort_order == nil) %>
+            <%= label_tag :sort_order_desc, "Descending" %>
+        </div>
     <% end %>
 
     <% if @results and not @results.items.empty?  %>
-        <p>Got <%= pluralize @results.total_count, 'result' %>, in <%= pluralize @num_pages, 'page' %></p>
+        <p>Got <%= pluralize @results.total_count, 'result' %>,
+            in <%=
+               if @num_pages <= 1
+                   "1 page"
+               else
+                   "#{@num_pages} pages"
+               end
+               %>
+        </p>
         <%= render partial: "nav_pages", locals: {page: @page,
                                                   pages: @num_pages,
                                                   per_page: @per_page} %>

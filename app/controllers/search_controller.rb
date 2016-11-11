@@ -16,12 +16,15 @@ class SearchController < ApplicationController
     end
 
     # search query, if present
-    @query = params[:query] || ''
-    @page = (params[:page] || 1).to_i
-    @per_page = (params[:per_page] || 100).to_i
+    @query      = (params[:query]      || '')
+    @page       = (params[:page]       || 1).to_i
+    @per_page   = (params[:per_page]   || 100).to_i
+    @sort_by    = (params[:sort_by]    || nil)
+    @sort_order = (params[:sort_order] || nil)
+    @language   = (params[:language]   || nil)
 
     if @query != ''
-      @results = get_search_results(@query, @page, @per_page)
+      @results = get_search_results(@query, @language, @sort_by, @sort_order, @page, @per_page)
       # GitHub only provides the first 1000 results, so we'll cap there
       @num_pages = [@results.total_count, 1000].min() / @per_page
     end
@@ -29,8 +32,19 @@ class SearchController < ApplicationController
 
   private
 
-  def get_search_results(query, page=0, per_page=100)
-    return @github.search_repositories query, {:page => page,
+  def get_search_results(query, language=nil, sort_by=nil, sort_order=nil, page=0, per_page=100)
+    if language && language != ''
+      query += " language:#{language}"
+    end
+    # score/relevance is the default sort order, actually sending "score" to GH
+    # only seems to confuse things, so we set it to nil here
+    if sort_by == "score"
+      sort_by = nil
+    end
+
+    return @github.search_repositories query, {:sort => sort_by,
+                                               :order => sort_order,
+                                               :page => page,
                                                :per_page => per_page}
   end
 end

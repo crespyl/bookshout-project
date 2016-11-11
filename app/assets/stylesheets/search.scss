@@ -9,13 +9,17 @@
 
 #search_panel {
     form {
-        display: flex;
-        text-align: center;
+        .form_row {
+            display: flex;
+            text-align: center;
 
-        input#query {
-            flex-grow: 2;
-            margin-left: 0.5em;
-            margin-right: 0.5em;
+            label:first-of-type {
+                min-width: 15%;
+            }
+            input[type="text"] {
+                flex-grow: 2;
+                padding: 5px;
+            }
         }
     }
 }

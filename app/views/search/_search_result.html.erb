@@ -1,7 +1,13 @@
 <li>
     <div class='info'>
         <span class='name'><%= link_to repo.name, repo.html_url %></span>
-        <span class='language'><%= repo.language || "None" %></span>
+        <span class='language'>
+            <% if repo.language %>
+                <%= link_to_search_with repo.language, :language => repo.language %>
+            <% else %>
+                None
+            <% end %>
+        </span>
         <span class='stargazers_count'><%= repo.stargazers_count %> Stars</span>
     </div>
     <div class='description'>
