@@ -1,7 +1,8 @@
 <li>
     <div class='info'>
-        <span class='name'><%= link_to repo.name, repo.html_url %></span>
+        <span class='name'>Name: <%= link_to repo.name, repo.html_url %></span>
         <span class='language'>
+            Language:
             <% if repo.language %>
                 <%= link_to_search_with repo.language, :language => repo.language %>
             <% else %>

@@ -23,3 +23,23 @@
         }
     }
 }
+
+#results_list {
+    li {
+        width: 95%;
+        margin: 0.5em;
+        border: 1px solid gray;
+
+        .info {
+            span {
+                padding: 4px;
+                border-bottom: 1px solid lightgray;
+            }
+        }
+        .description {
+            padding: 0.5em;
+            padding-left: 1em;
+            font-style: italic;
+        }
+    }
+}
